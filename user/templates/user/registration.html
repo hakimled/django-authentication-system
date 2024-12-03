@@ -1,0 +1,40 @@
+{%   load static  %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <style>
+        button{
+            width: 150px;
+            height: 25px;
+            background-color:#411fd8;
+            color: #fff;
+            border: none;
+        }
+        .helptext{
+            display: none;
+        }
+        ul{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+    
+        <button>Register</button>
+    </form>
+    
+    
+</body>
+</html>

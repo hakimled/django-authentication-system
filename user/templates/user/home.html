@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>rahalett.com</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        {% if not request.user.is_authenticated %}
+
+    <a href="{% url 'register' %}">register</a>
+    {% else %}
+
+    <a href="{% url 'logout' %}">logout</a>
+    <h2>{{ username }}</h2>
+
+    {%   endif  %}
+    </div>
+
+    <h1>All Users</h1>
+  
+    <h1>All Users</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Superuser</th>
+                <th>Staff</th>
+                <th>Active</th>
+                <th>last login</th>
+                <th>Date Joined</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.is_superuser }}</td>
+                <td>{{ user.is_staff }}</td>
+                <td>{{ user.is_active }}</td>
+                <td>{{ user.last_login }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>
+                    <a href="{% url 'delete_user' user.id %}" onclick="return confirm('Are you sure you want to delete {{ user.username }}?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+   
+</body>
+</html>
+
